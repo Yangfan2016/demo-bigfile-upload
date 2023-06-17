@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "target": "es6", // 目标 ECMAScript 版本
+      "module": "commonjs", // 模块解析策略
+      "outDir": "./dist", // 编译输出目录
+      "strict": true, // 启用所有严格类型检查选项
+      "esModuleInterop": true, // 支持 CommonJS 和 ES 模块互操作性
+      "experimentalDecorators": true, // 启用实验性的装饰器特性
+      "emitDecoratorMetadata": true // 启用装饰器元数据生成
+    },
+    "include": ["src/**/*"], // 包含的文件路径
+    "exclude": ["node_modules"] // 排除的文件路径
+  }

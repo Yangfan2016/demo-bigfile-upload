@@ -1,0 +1,28 @@
+{
+  "name": "demo-bigfile-upload",
+  "version": "1.0.0",
+  "description": "demo-bigfile-upload",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsnd src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yangfan2016/demo-bigfile-upload.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yangfan2016/demo-bigfile-upload/issues"
+  },
+  "homepage": "https://github.com/Yangfan2016/demo-bigfile-upload#readme",
+  "devDependencies": {
+    "@types/node": "^20.3.0",
+    "ts-node-dev": "^2.0.0"
+  },
+  "dependencies": {
+    "typescript": "^5.1.3"
+  }
+}

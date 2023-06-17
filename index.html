@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo-bigfile-upload</title>
+</head>
+
+<body>
+    <h1>大文件上传</h1>
+    <input type="file" id="inputBox" />
+    <button id="uploadBtn">upload</button>
+    <script>
+        uploadBtn.addEventListener("click", () => {
+            const file = inputBox.files[0];
+            const chunksize = 1024 ** 2 // 1MB
+            const total = Math.ceil(file.size / chunksize);
+            let cur = 0;
+
+
+            const reader = new FileReader();
+            reader.addEventListener('load', async (ev) => {
+                const r = await fetch("http://localhost:3000/upload", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/octet-stream",
+                        "X-File-Name": encodeURIComponent(file.name),
+                        "X-File-Size": file.size,
+                        "X-File-Total": total,
+                        "X-File-Cur": cur,
+                        "X-File-Type": file.type,
+                    },
+                    body: ev.target.result
+                })
+                if (r.status === 200) {
+                    if (cur < total - 1) {
+                        cur++;
+                        splitChunk();
+                    } else {
+
+                    }
+                }
+            });
+
+            function splitChunk() {
+                const start = cur * chunksize;
+                const end = Math.min(file.size, start + chunksize);
+                const chunk = file.slice(start, end);
+                reader.readAsArrayBuffer(chunk);
+            }
+
+            splitChunk();
+        })
+    </script>
+</body>
+
+</html>
